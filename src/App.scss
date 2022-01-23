@@ -1,0 +1,8 @@
+@import "./components/Table/Table.styles.scss";
+@import "./components/Node/Node.styles.scss";
+
+.table-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}

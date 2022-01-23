@@ -1,0 +1,28 @@
+$animation-time: 0.2s;
+
+.node-typ {
+  width: 100%;
+  height: 100%;
+  transition: all$animation-time ease-in;
+  cursor: pointer;
+}
+
+.start-node {
+  background-color: rgb(110, 255, 110);
+  transform-origin: center;
+  transform: scale(0);
+  animation: NodeAnim $animation-time ease-in 0s 1 forwards;
+}
+
+.end-node {
+  background-color: rgb(255, 117, 117);
+  transform-origin: center;
+  transform: scale(0);
+  animation: NodeAnim $animation-time ease-in 0s 1 forwards;
+}
+
+@keyframes NodeAnim {
+  to {
+    transform: scale(1);
+  }
+}
