@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Node from "../Node/Node";
 import useNodes from "../../hooks/useNodes";
+import { COLS, ROWS } from "../../global/grid";
 
-const ROWS = 11;
-const COLS = 22;
 type InputState = "start" | "finish" | "wall";
 
 const Table: React.FC = () => {
-  const [grid, setGrid] = useState<GridNode[]>([]);
+  const [grid, setGrid] = useState<GridNode[][]>([[]]);
   const [inputState, setInpuState] = useState<InputState>("start");
 
   const { createNode, setStart, setFinish } = useNodes();
 
   useEffect(() => {
-    const nodes: GridNode[] = [];
-
+    const allNodes = [];
     for (let i = 0; i <= ROWS; i++) {
+      const nodesRow: GridNode[] = [];
       for (let j = 0; j <= COLS; j++) {
-        nodes.push(createNode(i, j));
+        nodesRow.push(createNode(j, i));
       }
+      allNodes.push(nodesRow);
     }
-    setGrid(nodes);
+    setGrid(allNodes);
   }, []);
 
   const onNodeClick = (row: number, col: number) => {
@@ -36,17 +36,21 @@ const Table: React.FC = () => {
   return (
     <div className="table">
       <div className="table-container">
-        {grid.map((node, i) => (
-          <div
-            key={i}
-            className="table-node"
-            onClick={() => onNodeClick(node.row, node.col)}
-          >
-            <Node
-              isStart={node.isStart}
-              isWall={node.isWall}
-              isFinish={node.isFinish}
-            />
+        {grid.map((row, i) => (
+          <div className="table-row" key={i}>
+            {row.map((node, i) => (
+              <div
+                className="table-node"
+                onClick={() => onNodeClick(node.row, node.col)}
+                key={i}
+              >
+                <Node
+                  isStart={node.isStart}
+                  isFinish={node.isFinish}
+                  isWall={node.isWall}
+                />
+              </div>
+            ))}
           </div>
         ))}
       </div>

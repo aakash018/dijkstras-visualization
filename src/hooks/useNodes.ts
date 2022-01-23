@@ -16,15 +16,13 @@ const useNodes = () => {
   const setStart = (
     row: number,
     col: number,
-    setGrid: React.Dispatch<React.SetStateAction<GridNode[]>>,
-    grid: GridNode[]
+    setGrid: React.Dispatch<React.SetStateAction<GridNode[][]>>,
+    grid: GridNode[][]
   ) => {
-    const newGrid = grid.map((node) => {
-      if (node.col === col && node.row === row) {
+    const newGrid = [...grid];
+    newGrid[col].forEach((node) => {
+      if (node.row === row) {
         node.isStart = true;
-        return node;
-      } else {
-        return node;
       }
     });
     setGrid(newGrid);
@@ -33,15 +31,13 @@ const useNodes = () => {
   const setFinish = (
     row: number,
     col: number,
-    setGrid: React.Dispatch<React.SetStateAction<GridNode[]>>,
-    grid: GridNode[]
+    setGrid: React.Dispatch<React.SetStateAction<GridNode[][]>>,
+    grid: GridNode[][]
   ) => {
-    const newGrid = grid.map((node) => {
-      if (node.col === col && node.row === row) {
+    const newGrid = [...grid];
+    newGrid[col].forEach((node) => {
+      if (node.row === row) {
         node.isFinish = true;
-        return node;
-      } else {
-        return node;
       }
     });
     setGrid(newGrid);
