@@ -1,3 +1,5 @@
+import dijkstra from "../algorithm/dijkstra";
+
 const useNodes = () => {
   const createNode = (row: number, col: number): GridNode => {
     const node: GridNode = {
@@ -7,8 +9,9 @@ const useNodes = () => {
       isStart: false,
       isFinish: false,
       isWall: false,
-      isVisited: true,
+      isVisited: false,
       previousNode: null,
+      isPath: false,
     };
     return node;
   };
@@ -19,7 +22,14 @@ const useNodes = () => {
     setGrid: React.Dispatch<React.SetStateAction<GridNode[][]>>,
     grid: GridNode[][]
   ) => {
-    const newGrid = [...grid];
+    // console.log(grid);
+    const newGrid: GridNode[][] = JSON.parse(
+      JSON.stringify(grid),
+      function (_, value) {
+        return value === null ? Infinity : value;
+      }
+    );
+
     newGrid[col].forEach((node) => {
       if (node.row === row) {
         node.isStart = true;
@@ -41,6 +51,14 @@ const useNodes = () => {
       }
     });
     setGrid(newGrid);
+  };
+
+  const updateVisitedGrid = (grid: GridNode[][], visitedNodes: GridNode[]) => {
+    const updatedGrid = [];
+
+    visitedNodes.forEach((node) => {
+      grid[node.col][node.row].isVisited = true;
+    });
   };
 
   return { createNode, setStart, setFinish };

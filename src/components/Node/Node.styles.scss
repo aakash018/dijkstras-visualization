@@ -21,6 +21,14 @@ $animation-time: 0.2s;
   animation: NodeAnim $animation-time ease-in 0s 1 forwards;
 }
 
+.visited-node {
+  background-color: rgb(99, 99, 248);
+}
+
+.path-node {
+  background-color: rgb(240, 240, 97);
+}
+
 @keyframes NodeAnim {
   to {
     transform: scale(1);

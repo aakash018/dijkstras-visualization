@@ -6,5 +6,6 @@ declare interface GridNode {
   isStart: boolean;
   isFinish: boolean;
   isWall: boolean;
-  previousNode: GridNode | null;
+  previousNode: GridNode | null | number;
+  isPath: boolean;
 }
