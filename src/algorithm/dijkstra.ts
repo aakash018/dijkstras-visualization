@@ -13,7 +13,7 @@ const dijkstra = (
   //GETTING ALL UNVISITED NODES
   const unvisitedNodes = getUnvisitedNodes(grid);
 
-  while (!!unvisitedNodes.length) {
+  while (unvisitedNodes.length) {
     //Nodes sorting so that once with legit distance i.e not Infinity can be used
     sortNodesByDistance(unvisitedNodes);
 
@@ -22,7 +22,7 @@ const dijkstra = (
 
     if (currentNode?.distance === Infinity) return visitedNodes;
 
-    //TODO WALL LOGIC
+    if (currentNode.isWall) continue;
 
     currentNode!.isVisited = true;
     visitedNodes.push(currentNode);

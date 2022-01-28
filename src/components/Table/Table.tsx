@@ -3,6 +3,7 @@ import Node from "../Node/Node";
 import useNodes from "../../hooks/useNodes";
 import { COLS, ROWS } from "../../global/grid";
 import dijkstra, { findShortestPath } from "../../algorithm/dijkstra";
+import useWallDrag from "../../hooks/useWallDrag";
 
 type InputState = "start" | "finish" | "wall";
 
@@ -20,13 +21,20 @@ const Table: React.FC = () => {
   const [grid, setGrid] = useState<GridNode[][]>([[]]);
   const [inputState, setInpuState] = useState<InputState>("start");
   const [boardReset, setBoard] = useState(false);
+  const [startWallDrag, setStartWallDrag] = useState(false);
 
   const startAndEndNode = useRef<UserNodeOuter>({
     startNode: { row: 0, col: 0 },
     endNode: { row: 0, col: 0 },
   }).current;
 
-  const { createNode, setStart, setFinish } = useNodes();
+  const { createNode, setStart, setFinish, setWall } = useNodes();
+  const { handleDrag, handleMouseDown, handleMouseUp } = useWallDrag(
+    setStartWallDrag,
+    inputState,
+    setWall,
+    startWallDrag
+  );
 
   useEffect(() => {
     const allNodes = [];
@@ -49,6 +57,8 @@ const Table: React.FC = () => {
       setFinish(row, col, setGrid, grid);
       startAndEndNode.endNode = { row, col };
       setInpuState("wall");
+    } else {
+      setWall(row, col, setGrid, grid);
     }
   };
 
@@ -101,6 +111,13 @@ const Table: React.FC = () => {
                 <div
                   className="table-node"
                   onClick={() => onNodeClick(node.row, node.col)}
+                  onMouseDown={() =>
+                    handleMouseDown(node.row, node.col, grid, setGrid)
+                  }
+                  onMouseEnter={() =>
+                    handleDrag(node.row, node.col, grid, setGrid)
+                  }
+                  onMouseUp={handleMouseUp}
                   key={i}
                 >
                   <Node

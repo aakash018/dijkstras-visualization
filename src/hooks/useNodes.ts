@@ -53,15 +53,22 @@ const useNodes = () => {
     setGrid(newGrid);
   };
 
-  const updateVisitedGrid = (grid: GridNode[][], visitedNodes: GridNode[]) => {
-    const updatedGrid = [];
-
-    visitedNodes.forEach((node) => {
-      grid[node.col][node.row].isVisited = true;
+  const setWall = (
+    row: number,
+    col: number,
+    setGrid: React.Dispatch<React.SetStateAction<GridNode[][]>>,
+    grid: GridNode[][]
+  ) => {
+    const newGrid = [...grid];
+    newGrid[col].forEach((node) => {
+      if (node.row === row) {
+        node.isWall = true;
+      }
     });
+    setGrid(newGrid);
   };
 
-  return { createNode, setStart, setFinish };
+  return { createNode, setStart, setFinish, setWall };
 };
 
 export default useNodes;
