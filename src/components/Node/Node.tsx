@@ -23,7 +23,6 @@ const Node: React.FC<Props> = ({
     <div
       id={`node-${col}-${row}`}
       className={`node-typ 
-      ${isVisited && !isStart && !isFinish ? "visited-node" : ""}
       ${isStart ? "start-node" : ""} 
       ${isFinish ? "end-node" : ""}
       ${isWall ? "wall-node" : ""}

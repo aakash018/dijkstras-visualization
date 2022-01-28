@@ -4,6 +4,7 @@ import useNodes from "../../hooks/useNodes";
 import { COLS, ROWS } from "../../global/grid";
 import dijkstra, { findShortestPath } from "../../algorithm/dijkstra";
 import useWallDrag from "../../hooks/useWallDrag";
+import useAnimations from "../../hooks/useAnimations";
 
 type InputState = "start" | "finish" | "wall";
 
@@ -28,6 +29,9 @@ const Table: React.FC = () => {
     endNode: { row: 0, col: 0 },
   }).current;
 
+  const visitedNodes = useRef<GridNode[] | undefined>([]);
+  const pathNodes = useRef<GridNode[] | undefined>([]);
+
   const { createNode, setStart, setFinish, setWall } = useNodes();
   const { handleDrag, handleMouseDown, handleMouseUp } = useWallDrag(
     setStartWallDrag,
@@ -35,6 +39,7 @@ const Table: React.FC = () => {
     setWall,
     startWallDrag
   );
+  const { visitedNodeAni } = useAnimations();
 
   useEffect(() => {
     const allNodes = [];
@@ -65,6 +70,20 @@ const Table: React.FC = () => {
   const handleBordReset = () => {
     setBoard((prev) => !prev);
     setInpuState("start");
+
+    visitedNodes.current?.forEach((node) => {
+      const { row, col } = node;
+      document
+        .getElementById(`node-${col}-${row}`)
+        ?.classList.remove("visited-node");
+    });
+
+    pathNodes.current?.forEach((node) => {
+      const { row, col } = node;
+      document
+        .getElementById(`node-${col}-${row}`)
+        ?.classList.remove("path-node");
+    });
   };
 
   const onDijkstraRun = () => {
@@ -77,20 +96,23 @@ const Table: React.FC = () => {
       }
     );
 
-    const visitedNodes = dijkstra(
+    visitedNodes.current = dijkstra(
       newGrid[start.col][start.row],
       newGrid[end.col][end.row],
       newGrid
     );
 
-    if (visitedNodes?.length === 0) return;
+    if (visitedNodes.current?.length === 0) return;
     // console.log(visitedNodes);
 
-    const path = findShortestPath(newGrid[end.col][end.row]);
+    pathNodes.current = findShortestPath(newGrid[end.col][end.row]);
+    if (visitedNodes.current) {
+      visitedNodeAni(visitedNodes.current, pathNodes.current);
+    }
 
-    path.forEach((node) => {
-      node.isPath = true;
-    });
+    // path.forEach((node) => {
+    //   node.isPath = true;
+    // });
 
     setGrid(newGrid);
   };
