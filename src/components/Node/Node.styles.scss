@@ -1,4 +1,5 @@
 $animation-time: 0.2s;
+$animation-time-visited: 0.5s;
 
 .node-typ {
   width: 100%;
@@ -22,7 +23,8 @@ $animation-time: 0.2s;
 }
 
 .visited-node {
-  background-color: rgb(99, 99, 248);
+  background-color: rgb(145, 85, 194);
+  animation: visitedNodesAni $animation-time-visited ease-in 0s 1 forwards;
 }
 
 .wall-node {
@@ -35,6 +37,19 @@ $animation-time: 0.2s;
 
 @keyframes NodeAnim {
   to {
+    transform: scale(1);
+  }
+}
+
+@keyframes visitedNodesAni {
+  from {
+    transform-origin: center;
+    transform: scale(0.1);
+    border-radius: 50%;
+    background-color: rgb(75, 206, 0);
+  }
+  to {
+    border-radius: 0;
     transform: scale(1);
   }
 }

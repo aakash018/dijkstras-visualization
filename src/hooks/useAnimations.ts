@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-
 const useAnimations = () => {
   const visitedNodeAni = (visitedNodes: GridNode[], pathNodes: GridNode[]) => {
     visitedNodes?.forEach((node, i) => {
@@ -33,3 +31,5 @@ const animateShortestPath = (pathNodes: GridNode[]) => {
 };
 
 export default useAnimations;
+
+// SOE SHIT
