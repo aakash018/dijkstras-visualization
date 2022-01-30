@@ -1,0 +1,20 @@
+header {
+  background-color: var(--theme-color);
+  color: white;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 30px;
+
+  height: 60px;
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  .what-is {
+    font-size: 1.5rem;
+  }
+}

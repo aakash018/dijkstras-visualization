@@ -1,6 +1,27 @@
+.actionsTab {
+  // margin-left: 100px;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  .node-status-wraper {
+    justify-self: flex-start;
+  }
+
+  .reset-btn {
+    background-color: rgb(253, 145, 145);
+  }
+}
 .table {
   padding: 20px;
   margin-bottom: 40px;
+
+  // background-color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &-container {
     width: 100%;
@@ -10,7 +31,7 @@
   }
 
   &-node {
-    border: 1px solid rgba(95, 95, 95, 0.404);
+    // outline: 1px solid rgba(76, 147, 168, 0.404);
 
     width: 30px;
     height: 30px;

@@ -1,7 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap");
+
 @import "./components/Table/Table.styles.scss";
 @import "./components/Node/Node.styles.scss";
+@import "./components/Header/header.styles.scss";
+@import "./components/NodeStatus/NodeStatus.styles.scss";
 
 .table-wrapper {
   width: 100vw;
   height: 100vh;
+
+  // background-color: yellow;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 2px 25px;
+  height: 40px;
+  cursor: pointer;
+  background-color: rgb(58, 192, 145);
+
+  border-radius: 5px;
+
+  font-size: 1.3rem;
+
+  &:disabled {
+    background-color: rgb(129, 218, 186);
+    color: white;
+    cursor: not-allowed;
+  }
 }

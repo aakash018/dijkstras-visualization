@@ -1,0 +1,40 @@
+.node-status {
+  width: fit-content;
+  padding: 15px 20px;
+
+  font-size: 1.5rem;
+
+  &--text {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.user-node-type {
+  margin: 0 5px;
+
+  background-color: rgb(228, 228, 228);
+  padding: 3px 5px;
+  width: 80px;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &--main {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--finish {
+    background-color: red;
+  }
+
+  &--start {
+    background-color: green;
+  }
+
+  &--wall {
+    background-color: black;
+  }
+}

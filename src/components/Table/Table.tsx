@@ -5,6 +5,7 @@ import { COLS, ROWS } from "../../global/grid";
 import dijkstra, { findShortestPath } from "../../algorithm/dijkstra";
 import useWallDrag from "../../hooks/useWallDrag";
 import useAnimations from "../../hooks/useAnimations";
+import NodeStatus from "../NodeStatus/NodeStatus";
 
 type InputState = "start" | "finish" | "wall";
 
@@ -118,13 +119,26 @@ const Table: React.FC = () => {
   };
 
   return (
-    <>
-      <button disabled={!(inputState === "wall")} onClick={onDijkstraRun}>
-        View Dijkstra
-      </button>
-      <button onClick={handleBordReset} style={{ marginLeft: "20px" }}>
-        reset
-      </button>
+    <div className="table-and-buttons">
+      <div className="actionsTab">
+        <div className="node-status-wraper">
+          <NodeStatus type={inputState} />
+        </div>
+        <button
+          disabled={!(inputState === "wall")}
+          onClick={onDijkstraRun}
+          className="pri-btn"
+        >
+          View Dijkstra
+        </button>
+        <button
+          onClick={handleBordReset}
+          style={{ marginLeft: "20px" }}
+          className="reset-btn"
+        >
+          Reset Board
+        </button>
+      </div>
       <div className="table">
         <div className="table-container">
           {grid.map((row, i) => (
@@ -157,7 +171,7 @@ const Table: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
