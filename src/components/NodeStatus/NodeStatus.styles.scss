@@ -27,14 +27,14 @@
   }
 
   &--finish {
-    background-color: red;
+    background-color: var(--end-node-color);
   }
 
   &--start {
-    background-color: green;
+    background-color: var(--start-node-color);
   }
 
   &--wall {
-    background-color: black;
+    background-color: var(--wall-node-color);
   }
 }

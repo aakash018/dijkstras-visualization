@@ -7,6 +7,9 @@
 
 :root {
   --theme-color: #4e9aba;
+  --start-node-color: rgb(51, 255, 0);
+  --end-node-color: rgb(255, 117, 117);
+  --wall-node-color: rgb(29, 29, 29);
 }
 
 html {
@@ -36,4 +39,9 @@ button {
 
 h1 {
   font-size: 3.5rem;
+}
+
+p {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
 }

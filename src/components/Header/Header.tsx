@@ -1,10 +1,31 @@
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 
-const Header: React.FC = () => {
+interface Props {
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header: React.FC<Props> = ({ setShowInfo }) => {
+  const handleInfoClick = () => {
+    setShowInfo(true);
+  };
+
   return (
     <header>
       <section className="logo">DIJKASTRA VISULATIONA</section>
-      <section className="what-is">What is dijkstra?</section>
+      <section className="info">
+        <div onClick={handleInfoClick} className="info--what-is">
+          What is dijkstra's algorithm?
+        </div>
+        <section className="info--github">
+          <a
+            href="https://github.com/aakash018/dijkstras-visualization"
+            target={"_blank"}
+          >
+            <FaGithub />
+          </a>
+        </section>
+      </section>
     </header>
   );
 };

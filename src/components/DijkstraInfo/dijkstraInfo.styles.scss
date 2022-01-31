@@ -1,0 +1,46 @@
+.dijkstra-info {
+  position: absolute;
+  right: 0;
+  transform: translateX(100%);
+  transition: all 1s ease-in-out;
+
+  background-color: rgb(255, 255, 255);
+
+  width: 400px;
+  height: 100%;
+
+  border-left: 1px solid rgb(82, 82, 82);
+
+  padding: 0 20px;
+
+  overflow-y: auto;
+
+  &--heading {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.8rem;
+    color: var(--theme-color);
+
+    position: relative;
+
+    margin-bottom: 20px;
+  }
+
+  &--close {
+    position: absolute;
+    right: 20px;
+
+    font-size: 2.2rem;
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.show-info {
+  transform: translateX(0);
+}

@@ -10,14 +10,14 @@ $animation-time-visited: 0.5s;
 }
 
 .start-node {
-  background-color: rgb(51, 255, 0);
+  background-color: var(--start-node-color);
   transform-origin: center;
   transform: scale(0);
   animation: NodeAnim $animation-time ease-in 0s 1 forwards;
 }
 
 .end-node {
-  background-color: rgb(255, 117, 117);
+  background-color: var(--end-node-color);
   transform-origin: center;
   transform: scale(0);
   animation: NodeAnim $animation-time ease-in 0s 1 forwards;
@@ -29,12 +29,14 @@ $animation-time-visited: 0.5s;
 }
 
 .wall-node {
-  background-color: black;
+  background-color: var(--wall-node-color);
 }
 
 .path-node {
-  background-color: rgb(183, 97, 240);
+  background-color: rgb(226, 240, 97);
   border: none;
+  transform-origin: center;
+  // animation: PathNodesAni $animation-time-visited ease-in 0s 1 forwards;
 }
 
 @keyframes NodeAnim {
@@ -52,6 +54,15 @@ $animation-time-visited: 0.5s;
   }
   to {
     border-radius: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes PathNodesAni {
+  0% {
+    transform: scale(1.3);
+  }
+  100% {
     transform: scale(1);
   }
 }
