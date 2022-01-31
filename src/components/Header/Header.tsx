@@ -12,7 +12,7 @@ const Header: React.FC<Props> = ({ setShowInfo }) => {
 
   return (
     <header>
-      <section className="logo">DIJKASTRA VISULATIONA</section>
+      <section className="logo">DIJKASTRA VISUALIZATION</section>
       <section className="info">
         <div onClick={handleInfoClick} className="info--what-is">
           What is dijkstra's algorithm?

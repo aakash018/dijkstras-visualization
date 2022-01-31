@@ -1,5 +1,8 @@
 .dijkstra-info {
   position: absolute;
+
+  z-index: 100;
+
   right: 0;
   transform: translateX(100%);
   transition: all 1s ease-in-out;
